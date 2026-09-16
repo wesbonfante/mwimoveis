@@ -2,29 +2,90 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
   <title>MW - Consultoria Imobiliária</title>
+
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+
   <style>
-    html, body {
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
       margin: 0;
       padding: 0;
       width: 100%;
-      height: 100%;
+      min-height: 100%;
       overflow: hidden;
     }
-    iframe {
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+
+    #site-frame {
+      display: block;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      border: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Mobile */
+    html.mobile,
+    html.mobile body {
       width: 100%;
       height: 100%;
-      border: none;
+    }
+
+    /* Desktop */
+    html.desktop,
+    html.desktop body {
+      width: 100%;
+      height: 100%;
     }
   </style>
+
+  <script>
+    function detectarDispositivo() {
+      const mobile =
+        window.matchMedia("(pointer: coarse)").matches ||
+        /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+
+      document.documentElement.classList.remove("mobile", "desktop");
+      document.documentElement.classList.add(
+        mobile ? "mobile" : "desktop"
+      );
+
+      document.documentElement.dataset.device =
+        mobile ? "mobile" : "desktop";
+    }
+
+    detectarDispositivo();
+
+    window.addEventListener("resize", detectarDispositivo);
+  </script>
 </head>
+
 <body>
-  <iframe 
-    src="https://wandering-mode-1de2.wesleybonfante.workers.dev/" 
+
+  <iframe
+    id="site-frame"
+    src="https://wandering-mode-1de2.wesleybonfante.workers.dev/"
     loading="eager"
     referrerpolicy="no-referrer"
     sandbox="allow-scripts allow-forms allow-same-origin allow-popups">
   </iframe>
+
 </body>
 </html>
